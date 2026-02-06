@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6">
+    <section className="min-h-screen flex items-center justify-center">
       <div className="max-w-4xl text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-          Hi, I’m <span className="text-primary">Guddu Kumar</span> 👋
+          Hi, I’m <span className="text-primary">GUDDU KUMAR</span> 👋
         </h1>
 
         <p className="mt-4 text-xl sm:text-2xl text-muted-foreground">
@@ -23,7 +23,7 @@ export default function Home() {
             href="/home"
             className="px-6 py-3 rounded-lg border border-border font-medium hover:bg-muted transition"
           >
-            View Dashboard
+            Hire Me
           </Link>
 
           <Link
