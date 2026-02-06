@@ -33,7 +33,8 @@ const data = {
   developer: {
     name: "GUDDU KUMAR",
     email: "gk4communication@gmail.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/avatar.png",
+    logo: "/logo.png",
   },
   navMain: [
     {
@@ -105,7 +106,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenuButton size="lg" asChild>
                 <Link className="text-2xl font-bold" href="/">
                   <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                    <Command className="size-4" />
+                    <img src={data.developer.logo} alt="Logo" />
                   </div>
                   <div className="grid flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-medium">Guddu Kumar</span>
