@@ -1,5 +1,6 @@
 "use client";
 
+import FeedbackForm from "@/components/FeedbackForm";
 import { useState, ChangeEvent, FormEvent } from "react";
 
 type FeedbackForm = {
@@ -16,7 +17,7 @@ export default function Feedback() {
   });
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -30,55 +31,25 @@ export default function Feedback() {
   };
 
   return (
-    <section className="w-full max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-2 text-center">
-        Feedback
-      </h2>
-      <p className="text-center text-muted-foreground mb-6">
-        I’d love to hear your thoughts or suggestions.
-      </p>
+    <section className="w-full py-20 px-6 bg-background">
+      <div className="max-w-4xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Feedback</h2>
+          <p className="mt-4 text-muted-foreground">
+            I’d love to hear your thoughts or suggestions.
+          </p>
+        </div>
+        {/* Form */}
+        <FeedbackForm />
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4 bg-white/60 dark:bg-black/40 backdrop-blur-md p-6 rounded-2xl shadow-lg"
-      >
-        <input
-          type="text"
-          name="name"
-          placeholder="Your name"
-          value={form.name}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 rounded-lg border bg-transparent outline-none focus:ring-2 focus:ring-primary"
-        />
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Your email"
-          value={form.email}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 rounded-lg border bg-transparent outline-none focus:ring-2 focus:ring-primary"
-        />
-
-        <textarea
-          name="message"
-          placeholder="Your feedback"
-          rows={4}
-          value={form.message}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2 rounded-lg border bg-transparent outline-none focus:ring-2 focus:ring-primary"
-        />
-
-        <button
-          type="submit"
-          className="w-full py-2 rounded-lg bg-primary text-primary-foreground cursor-pointer font-medium hover:opacity-90 transition"
-        >
-          Send Feedback
-        </button>
-      </form>
+        <div className="mt-10 text-center text-sm text-muted-foreground">
+          Or email me directly at{" "}
+          <span className="text-foreground font-medium cursor-pointer hover:underline">
+            gk4communication@gmail.com
+          </span>
+        </div>
+      </div>
     </section>
   );
 }

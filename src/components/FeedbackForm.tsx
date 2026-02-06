@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 
-export default function ContactForm() {
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+type FeedbackResponse = {
+  success?: boolean;
+  error?: string;
+};
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+export default function FeedbackForm() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -21,11 +26,11 @@ export default function ContactForm() {
       body: JSON.stringify({
         name: formData.get("name"),
         email: formData.get("email"),
-        message: formData.get("message"),
+        message: formData.get("feedback"),
       }),
     });
 
-    const data = await res.json();
+    const data: FeedbackResponse = await res.json();
     setLoading(false);
 
     if (!res.ok) {
@@ -34,16 +39,21 @@ export default function ContactForm() {
       setSuccess(true);
       e.currentTarget.reset();
     }
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 glass glass-hover backdrop-blur-md p-6 rounded-2xl shadow-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 glass glass-hover backdrop-blur-md p-6 rounded-2xl shadow-lg"
+    >
       <input
         name="name"
+        type="text"
         placeholder="Your Name"
         required
         className="w-full p-3 rounded-md border"
       />
+
       <input
         name="email"
         type="email"
@@ -51,23 +61,34 @@ export default function ContactForm() {
         required
         className="w-full p-3 rounded-md border"
       />
+
       <textarea
-        name="message"
-        placeholder="Your Message"
-        required
+        name="feedback"
+        placeholder="Your Feedback"
         rows={5}
+        required
         className="w-full p-3 rounded-md border"
       />
 
       <button
+        type="submit"
         disabled={loading}
         className="w-full py-2 rounded-lg bg-primary text-primary-foreground cursor-pointer font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {loading ? "Sending..." : "Send Message"}
+        {loading ? "Submitting..." : "Submit Feedback"}
       </button>
 
-      {success && <p className="text-green-600">Message sent successfully!</p>}
-      {error && <p className="text-red-600">{error}</p>}
+      {success && (
+        <p className="text-sm text-green-600">
+          Thanks! Your feedback has been sent 🙌
+        </p>
+      )}
+
+      {error && (
+        <p className="text-sm text-red-600">
+          {error}
+        </p>
+      )}
     </form>
   );
 }

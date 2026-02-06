@@ -44,7 +44,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </Breadcrumb>
             </div>
           </header>
-          <div className="glass glass-hover min-h-[calc(100vh-4rem)]">{children}</div>
+          <div className="glass min-h-[calc(100vh-4rem)]">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     </div>
